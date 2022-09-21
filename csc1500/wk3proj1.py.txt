@@ -1,0 +1,166 @@
+###################
+#  Work Ticket 1  #
+###################
+
+#  Revision 1 12:01pm 9/21/22
+## Begin Ryan Alsobrooks here 9/21/22
+
+#  Issue 1
+#prints a string containing double quotation marks
+print('""This string contains double quotation marks""');
+
+#  Issue 2
+#Prints a string containing and apostrophe
+print('Wow! It\'s an apostrophe!');
+
+#  Issue 3
+#Prints a string across multiple lines
+print('This string spans multiple lines\nwhilst also preserving whitespace!');
+
+#  Issue 4
+#Prints a string on one line that is coded in multiple
+print(
+      "This string is coded on multiple lines "
+    + "but is only printed on one!"
+    );
+
+#  Revision 1 12:09pm 9/21/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+###################
+#  Work Ticket 2  #
+###################
+
+#  Revision 1 12:10pm 9/21/22
+## Begin Ryan Alsobrooks here 9/21/22
+
+#  Issue 1
+#Prints the length of a string
+aString = "This is a string";
+print(len(aString));
+
+#  Issue 2
+#Combines two strings and prints them together
+string21 = "String21";
+string22 = "String22";
+string23 = string21 + string22; 
+print(string23);
+
+#  Issue 3
+#Combines two strings with a space inbetween and prints the result
+string31 = "String31";
+string32 = "String32";
+string33 = string31 + " " + string32;
+print(string33);
+
+#  Issue 4
+#Prints a substring of "bazinga"
+bazinga = "bazinga";
+print(bazinga[2:6]);
+
+#  Revision 1 12:17pm 9/21/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+###################
+#  Work Ticket 3  #
+###################
+
+#  Revision 1 12:19pm 9/21/22
+## Begin Ryan Alsobrooks here 9/21/22
+
+#  Issue 1
+#List of animals
+animals = [ "Animals", "Badger", "Honey Bee", "Honey Badger" ];
+
+#Prints all animals in lower case
+for animal in animals:
+    print(animal.lower());
+
+#  Issue 2
+#Prints all animals in upper case
+for animal in animals:
+    print(animal.upper());
+
+#  Issue 3
+#List of foods
+foods = [ " Filet Mignon", "Brisket ", " Cheeseburger " ];
+
+#Removes spaces from all foods and prints them
+for food in foods:
+    print(food.replace(" ", ""));
+
+#  Issue 4
+#A list of words that kind of begin with be
+BEginnings = [ "Becomes", "becomes", "BEAR", " bEautiful" ];
+
+#Prints whether or not each word starts with "be"
+for BEginning in BEginnings:
+    print(BEginning.startswith("be"));
+
+#  Revision 1 12:27pm 9/21/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+###################
+#  Work Ticket 4  #
+###################
+
+#  Revision 1 12:29pm 9/21/22
+## Begin Ryan Alsobrooks here 9/21/22
+
+#  Issue 1
+aString = "1";         #A string value with a number
+anInt = int(aString);  #Converts the string into an integer
+print(anInt * 5);      #prints the converted integer multiplied by 5
+
+#  Issue 2
+aString = "2";              #A string value with a number
+aFloat = float(aString);    #Converts the string value to a float
+print(aFloat * 5);          #prints the float multiplied by 5
+
+#  Issue 3
+aString = "3";                  #A string value with a number
+anInt = 3;                      #An int value with the same number
+print(aString + str(anInt));    #Converts the int to a string and prints both
+
+#  Issue 4
+#initialize input vars
+num1 = 0.0;
+num2 = 0.0;
+
+#while loop to run until both inputs are successfully recorded
+while True:
+    try:
+        #Attempt to get inputs
+        num1 = float(input('Please enter a number '));
+        num2 = float(input('Please enter another number '));
+        #If succeeded, exit while loop
+        break;
+    except:
+        #If conversion failed, scold the user and make them do it all
+        #over again
+        print('I said enter a number you dingus');
+        continue;
+    
+#Print the product of the two inputs
+print('The product of ' + str(num1) +
+      ' and ' + str(num2) + ' is ' + str(num1 * num2) + '.');
+
+
+#  Issue 5
+aString = "This is a string"        
+substring = "is";
+#prints the location of substring within aString
+print(str(aString.find(substring)));    
+
+#  Revision 1 12:39pm 9/21/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
