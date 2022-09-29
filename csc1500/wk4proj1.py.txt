@@ -1,0 +1,223 @@
+###################
+#  Work Ticket 1  #
+###################
+#  Revision 1 8:20pm 9/28/22
+## Begin Ryan Alsobrooks here 9/28/22
+
+#Requests a string from user
+strin = input("Please enter a string:\n");
+#Prints relevant message
+print("You entered " + strin + " and its type is " + str(type(strin)));
+
+#Requests an integer from user
+intin = input("Please enter an integer:\n");
+#Prints relevant message
+print("You entered " + intin + " and its type is " + str(type(intin)));
+
+
+#  Revision 1 8:25pm 9/28/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 2  #
+###################
+#  Revision 1 8:27pm 9/28/22
+## Begin Ryan Alsobrooks here 9/28/22
+
+#Builds a string
+strout = "";
+strout += "Twinkle, twinkle, little star,\n";
+strout += "\tHow I wonder what you are!\n";
+strout += "\t\tUp above the world so high,\n";
+strout += "\t\tLike a diamond in the sky.\n";
+strout += "Twinkle, twinkle, little star,\n";
+strout += "\tHow I wonder what you are";
+#Prints the greatest melody ever
+print(strout);
+
+
+
+#  Revision 1 8:31 9/28/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 3  #
+###################
+#  Revision 1 9:12pm 9/28/22
+## Begin Ryan Alsobrooks here 9/28/22
+
+#Takes a radius as input
+while True:
+    try:
+        r = float(input("r = "));
+        break;
+    except:
+        print("Enter a number");
+
+#Computes and prints output
+print("Area = " + str(3.1415 * r * r));
+
+
+#  Revision 1 9:14pm 9/28/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 4  #
+###################
+#  Revision 1 9:15pm 9/28/22
+## Begin Ryan Alsobrooks here 9/28/22
+
+#A list of vowels
+vowels = "aeiou";
+letter = input("Enter a letter\n");
+print(vowels.find(letter.lower()[0]) >= 0);
+
+
+#  Revision 1 9:19pm 9/28/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 5  #
+###################
+#  Revision 1 9:22pm 9/28/22
+## Begin Ryan Alsobrooks here 9/28/22
+
+
+#Print the sequence
+print([i**4 for i in range(20)]);
+
+
+#  Revision 1 9:34 9/28/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 6  #
+###################
+#  Revision 1 9:36 9/28/22
+## Begin Ryan Alsobrooks here 9/28/22
+
+
+
+#appends a list to a list like a sane person
+def appnd(l1, l2):
+    for e in l2:
+        l1.append(e);
+
+#checks if a list contains an element
+def contains(l, e):
+    for c in l:
+        if(c == e):
+            return True;
+    return False;
+
+
+
+#List of slots for the roulette wheel
+slots = [ "G0", "G00" ]
+
+#Append red slots
+appnd(slots, ["R" + str(i) for i in range(10) if i % 2 != 0]);
+appnd(slots, ["R" + str(i) for i in range(11, 19) if i % 2 == 0]);
+appnd(slots, ["R" + str(i) for i in range(19, 28) if i % 2 != 0]);
+appnd(slots, ["R" + str(i) for i in range(30, 37) if i % 2 == 0]);
+
+#Append black slots
+for i in range(2, 36):
+    if(not contains(slots, "R" + str(i))):
+        slots.append("B" + str(i));
+
+
+#Log of user selection actions
+log = [];
+
+
+# Enter game loop
+running = True;
+while running:
+    response = "";
+    while True:
+        response = input("Select a slot\n");
+
+        #Exit if response is quit or exit
+        if(response[0].lower() == "q" or response[0].lower() == "e"):
+            running = False;
+            break;
+        #Scold the user for inputting an invalid response
+        if(not contains(slots, response.upper())):
+            print("Invalid Response: " + response);
+            print("B/R<number>");
+        else:
+            #Log the user's selection
+            log.append(response);
+            break;
+        
+    
+
+#Print the log when they quit
+print(log);
+
+
+#  Revision 1 10:06pm 9/28/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+###################
+#  Work Ticket 7  #
+###################
+#  Revision 1 10:10pm 9/28/22
+## Begin Ryan Alsobrooks here 9/28/22
+
+#Ask the user for a list of guests they'd like to invite to dinner
+DinnerGuests = [];
+DateInvited = [];
+while True:
+    guest = input("Enter a guest you'd like to invite or 'done' to stop: ");
+    if(guest.lower() == "done"):
+        break;
+    DinnerGuests.append(guest);
+    
+    date = input("Enter the date you invited them: ");
+    DateInvited.append(date);
+
+#Print the guest, their invitation date, and what size nametag their id goes on
+for i in range(len(DinnerGuests)):
+    sizeoftag = "SMALL";
+    if(len(DinnerGuests[i]) > 10):
+       sizeoftag = "BIG";
+    output1 = DinnerGuests[i] + " was invited on " + DateInvited[i];
+    output1 += ". They need a " + sizeoftag + " tag."
+    print(output1);
+
+
+
+#  Revision 1 10:17pm 9/28/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
