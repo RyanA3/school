@@ -1,0 +1,91 @@
+###################
+#  Work Ticket 1  #
+###################
+#  Revision 1 1:30pm 10/3/22
+## Begin Ryan Alsobrooks here 10/3/22
+
+#Store first and last names as variables
+fname = "Ryan";
+lname = "Alsobrooks";
+
+#Prints a thoughtful greeting
+print('Hello, ' + fname + ' ' + lname);
+
+#Prints two empty lines
+print('\n\n');
+
+
+#Combines both name variables into one
+name = fname + ' ' + lname;
+
+#Prints just the last name from the combined name variable
+print(name.split(' ')[1]);
+
+
+
+
+#Prints an inspiring quote
+quote = "\"Start by doing what's necessary; then do what's\n";
+quote += "possible; and suddenly you are doing the\n";
+quote += "impossible - Francis of Assisi\"";
+print(quote);
+
+
+
+
+#Stores two decimal numbers as vars
+dec1 = 1.25;
+dec2 = 5.50;
+
+#Stores the results of various operations on decimal vars
+add = dec1 + dec2;
+sub = dec1 - dec2;
+div = dec1 / dec2;
+mul = dec1 * dec2;
+
+#Prints the results of the operations using various methods
+out1 = str(dec1) + ' plus ' + str(dec2) + ' equals ' + str(add);
+print(out1);
+
+out2 = '%n1 minus %n2 equals %r';
+out2 = out2.replace("%n1", str(dec1));
+out2 = out2.replace("%n2", str(dec2));
+out2 = out2.replace("%r", str(sub));
+print(out2);
+
+out3 = '%s divided by %s equals %s' % (dec1, dec2, div);
+print(out3);
+
+out4 = '{0} multiplied by {1} equals {2}'.format(dec1, dec2, mul);
+print(out4);
+
+
+#Finds the sqrt of the result of the multiplication
+sq_root = mul ** 1/2;
+
+#Truncates to two decimal places
+isq = int(sq_root * 100)
+fsq = float(isq) / 100;
+
+#Prints the sqrt
+print('The square root of {0} is ~{1}'.format(mul, fsq))
+
+
+
+
+#Stores the current date
+month = "October"
+day = 3;
+
+#Outputs the date
+print('\n\t\tToday is day {} of the month of {}.'.format(day, month));
+
+#  Revision 1 2:20pm 10/3/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+
