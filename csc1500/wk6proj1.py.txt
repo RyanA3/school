@@ -1,0 +1,93 @@
+from tkinter import *
+import os
+
+
+#  Revision 1 11:00am 10/8/22
+## Begin Ryan Alsobrooks here
+
+#The Photographer madlib
+desc1 = ['food', 'name', 'place', 'animals', 'profession', 'things', 'cloth', 'verb']
+madlib1 = 'Say {0}, the photographer said as the camera flashed! '
+madlib1 += '{1} and I had gone to {2} to get our photos taken on my birthday. '
+madlib1 += 'The first photo we really wanted was a picture of us dressed as '
+madlib1 += '{3} pretending to be a {4}. When we saw the second photo, it was '
+madlib1 += 'exactly what I wanted. We both looked like {5} wearing {6} and '
+madlib1 += '{7} -- exactly what I had in mind.'
+
+#Apples and Apples madlib
+desc2 = ['person', 'color', 'foods', 'adjective', 'thing', 'place', 'verb', 'adverb', 'food', 'things']
+madlib2 = 'Today we picked apples from {0}\'s Orchard. I had no idea there '
+madlib2 += 'were so many different varieties of apples. I ate {1} apples '
+madlib2 += 'straight off the tree that tasted like {2}. Then there was a '
+madlib2 += '{3} apple that looked like a {4}. When our bad was full, we '
+madlib2 += 'went on a free hay ride to {5} and back. It ended at a hay pile '
+madlib2 += 'where we got to {6} {7}. I can hardly wait to get home and cook '
+madlib2 += 'with the apples. We are going to make apple {8} and {9} pies!'
+
+#The Butterfly madlib
+desc3 = ['adjective', 'color', 'thing', 'place', 'person', 'adjective', 'insect', 'food', 'verb']
+madlib3 = 'Last night I dreamed I was a {0} butterfly with {1} splotches '
+madlib3 += 'that looked like {2}. I flew to {3} with my best friend and {4} '
+madlib3 += 'who was a {5} insect. We ate some {6} when we got there and then '
+madlib3 += 'decided to {7} and the dream ended when I said-- let\'s {8}.'
+
+
+madlibnames = ['The Photographer', 'Apples and Apples', 'The Butterfly']
+madlibs = [madlib1, madlib2, madlib3]
+descrips = [desc1, desc2, desc3]
+
+
+#Get the required input words for a madlib
+def getInputs(descs):
+    inputs = [];
+    for description in descs:
+        inputs.append(input('Enter a {}: '.format(description)));
+    return inputs;
+    
+#Replace the placeholders in a madlib with the input words
+def generate(base, inputs):
+    for i in range(len(inputs)):
+        base = base.replace('{' + str(i) + '}', inputs[i]);
+    return base;
+
+#Complete a madlib
+def doMadLib(index):
+    base = madlibs[index];
+    desc = descrips[index];
+    inputs = getInputs(desc);
+    out = generate(base, inputs);
+    print(out);
+
+#Exit the program
+def quit_program():
+    os._exit(0);
+
+def madlib0():
+    doMadLib(0);
+def madlib1():
+    doMadLib(1);
+def madlib2():
+    doMadLib(2);
+
+
+#Setup Window
+window = Tk();
+window.geometry('300x400');
+window.title('Madlib Generator');
+Label(window, text= 'Madlibs Story Tellyer', font= 'Cambria 20 bold').pack();
+
+#Setup buttons
+Button(window, text= madlibnames[0], font= 'Cambria 15', command= madlib0, bg= 'white').place(x=60, y=120);
+Button(window, text= madlibnames[1], font= 'Cambria 15', command= madlib1, bg= 'white').place(x=60, y=180);
+Button(window, text= madlibnames[2], font= 'Cambria 15', command= madlib2, bg= 'white').place(x=60, y=240);
+Button(window, text= 'Quit', font= 'Cambria 15', foreground= 'Green', background= 'Yellow', command= quit_program).place(x=60, y=300); 
+
+#Start the window
+window.mainloop();
+
+
+#  Revision 1 11:45am 10/8/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
