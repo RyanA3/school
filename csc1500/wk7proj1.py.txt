@@ -1,0 +1,203 @@
+###################
+#  Work Ticket 1  #
+###################
+
+#Given lists
+names  = ['joe', 'tom', 'barb', 'sue', 'thomas'];
+scores = [10, 23, 13, 18, 12]
+
+#  Revision 1 2:25pm 10/17/22
+## Begin Ryan Alsobrooks here 10/17/22
+
+#Combines two arrays into a dictionary
+def makeDictionary(keys, values):
+    newdict = {};
+    for i in range(len(keys)):
+        newdict.update({keys[i]: values[i]});
+        
+    return newdict;
+
+
+#Combines names and scores into the scoreDict variable
+scoreDict = makeDictionary(names, scores);
+
+
+#  Revision 1 2:30pm 10/17/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 2  #
+###################
+#  Revision 1 4:45pm 10/17/22
+## Begin Ryan Alsobrooks here 10/17/22
+
+#Callback functions stored here
+commands = {}
+
+#  Revision 1 5:10pm 10/17/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 3  #
+###################
+#  Revision 1 5:10pm 10/17/22
+## Begin Ryan Alsobrooks here 10/17/22
+
+
+#Adds a key value pair to the dictionary
+def addDictValue(args):
+    if(len(args) != 2):
+        return 'Usage: add <key> <value>'
+
+    scoreDict.update({args[0] : args[1]});
+    return 'Appended: { ' + args[0] + ' : ' + args[1] + ' }';
+
+#Adds add command to commands
+commands.update({'add' : addDictValue});
+
+
+#  Revision 1 5:20pm 10/17/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 4  #
+###################
+#  Revision 1 7:30pm 10/17/22
+## Begin Ryan Alsobrooks here 10/17/22
+
+sScores = scoreDict.values();
+sScores = sorted(sScores);
+print(sScores);
+
+#  Revision 1 7:35pm 10/17/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 5  #
+###################
+#  Revision 1 7:35pm 10/17/22
+## Begin Ryan Alsobrooks here 10/17/22
+
+#Deletes a value from the dictionary
+def delDictValue(args):
+    if(len(args) != 1):
+        return 'Usage: delete <key>';
+
+    if(not (args[0] in scoreDict)):
+        return 'Invalid Key: ' + args[0];
+    else:
+        del scoreDict[args[0]];
+        return 'Deleted ' + args[0];
+
+#Adds del command
+commands.update({'delete' : delDictValue});
+
+#Queries if an individual is in the dict
+def queryDictValue(args):
+    if(len(args) != 1):
+        return 'Usage: query <key>';
+
+    if(args[0] in scoreDict):
+        return args[0] + ' is in the dict';
+    else:
+        return args[0] + ' does not exist';
+
+#Adds query command
+commands.update({'query' : queryDictValue});
+
+#Prints the entire dictionary
+def listDictValues(args):
+    return str(scoreDict);
+
+#Adds list command
+commands.update({'list' : listDictValues});
+
+#  Revision 1 7:45pm 10/17/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###################
+#  Work Ticket 2  #
+###################
+#  Revision 1 4:45pm 10/17/22
+## Begin Ryan Alsobrooks here 10/17/22
+
+#Gets a value from the dictionary and returns it to the user
+def getDictValue(args):
+    if(len(args) != 1):
+        return 'Usage: get <key>';
+    else:
+        if(not (args[0] in scoreDict)):
+            return 'Invalid Key: ' + args[0];
+        else:
+            return scoreDict[args[0]];
+
+#Adds get function to commands
+commands.update({'get': getDictValue})
+
+#Input Loop
+while(True):
+    #Get user input
+    inpt = input('Enter Command: ');
+
+    #Check if should exit loop
+    if(inpt == 'quit' or inpt == 'exit'):
+        break;
+
+    #Break input down into cmd/args
+    sinpt = inpt.split(' ');
+    cmd = sinpt[0];
+    args = sinpt; args.remove(cmd);
+
+
+    #Scold user if cmd is not valid, otherwise execute specified command
+    if(not (cmd in commands)):
+        print(commands.keys());
+    else:
+        print(commands[cmd](args));
+
+
+#  Revision 1 5:10pm 10/17/22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
