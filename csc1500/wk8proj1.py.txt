@@ -1,0 +1,291 @@
+###########
+# Issue 1 #
+###########
+
+#  Revision 1 5:05pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+def issue1():
+    anum = -1;
+    while(True):
+        try:
+            anum = int(input('Enter a number: '));
+            break;
+        except:
+            print("That's not a number");
+            
+    newnum = anum;
+    newnum += 2;
+    newnum *= 3;
+    newnum -= 6;
+    newnum /= 3;
+    print('{0} == {1} ? {2}'.format(anum, newnum, anum == newnum));
+
+#  Revision 1 5:10pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###########
+# Issue 2 #
+###########
+
+#  Revision 1 5:10pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+def issue2group1():
+    my_var1 = 7.0;
+    my_var2 = 5;
+    print(my_var1 % my_var2);
+
+def issue2group2():
+    x = 4;
+    y = 5;
+    print(x//y);
+
+def issue2group3():
+    30-3**2+8//3**2*10
+
+#  Revision 1 5:15pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###########
+# Issue 3 #
+###########
+
+#  Revision 1 5:15pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+types = [str, int, float]
+def issue3():
+    some_in = input('Enter Something: ');
+    for atype in types:
+        try:
+            print('{0} : {1}'.format(str(atype), str(atype(some_in))));
+        except:
+            print('Cannot print as type {0}'.format(str(atype)));
+            
+
+#  Revision 1 5:20pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###########
+# Issue 4 #
+###########
+
+#  Revision 1 5:20pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+def issue4():
+    v1 = 2**2**3;
+    v2 = 2**(2**3);
+    v3 = (2**2)**3;
+
+    print('{0} = {1} = {2} ? {3}'.format(str(v1),str(v2),str(v3), str(v1 == v2 and v2 == v3)));
+
+
+#  Revision 1 5:22pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###########
+# Issue 5 #
+###########
+
+#  Revision 1 5:22pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+def issue5():
+    import random;
+
+    chest = 50;
+    bank = 10;
+    spins = 0;
+
+    while(bank > 0):
+        spins += 1;
+        bank -= 1;
+        chest += 1;
+
+        if(random.randint(0, 10) == 0):
+            bank += 9;
+            chest -= 9;
+            print('WIN! WIN! WIN!    +9 Credits');
+
+        print('Bank: {0},   Chest: {1},   Spins {2}'.format(str(bank),str(chest),str(spins)))
+
+#  Revision 1 5:30pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###########
+# Issue 6 #
+###########
+
+#  Revision 1 8:00pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+import random
+
+#Create list of characters to select from
+pchars = [i for i in range(10)]
+alphabet = list('aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ');
+special = list('!@#$%^&*()_+-=[]{}\\|;:,<.>/?')
+for char in alphabet:
+    pchars.append(char);
+
+illegalpwds = ['and', 'is', 'yours', 'hello', 'welcome', 'password']
+
+def genPwd():
+    length = 20;
+    num_specials = random.randint(1, 4);
+    special_repeat = length / num_specials;
+
+    pwd = '';
+    for i in range(length):
+        if(i % special_repeat == 0):
+            pwd += str(special[random.randint(0, len(special)-1)]);
+        else:
+            pwd += str(pchars[random.randint(0, len(pchars)-1)]);
+
+    return pwd;
+
+def isLegal(pwd):
+    for check in illegalpwds:
+        if(pwd == check):
+            return False;
+    return True;
+
+def issue6():
+    pwds = [];
+    iterations = 40;
+    for i in range(iterations):
+        pwd = genPwd();
+        while(not isLegal(pwd)):
+            pwd = genPwd();
+        pwds.append(pwd);
+
+    print(pwds);
+
+
+#  Revision 1 8:25pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###########
+# Issue 7 #
+###########
+
+#  Revision 1 8:30pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+
+def issue7():
+    group_sizes = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+    group_d2s = [1.128, 1.693, 2.059, 2.326, 2.534, 2.704, 2.847, 2.970, 3.078];
+
+    spec_mid = 16.5;
+    spec_vary = 1.0;
+    upper_spec_lim = spec_mid + spec_vary;
+    lower_spec_lim = spec_mid - spec_vary;
+
+    process_mean = 16.507;
+    range_mean = 0.561;
+
+    print('Size      d2      Cpk');
+    for i in range(len(group_sizes)):
+        std = range_mean / group_d2s[i];
+        cpk = min(upper_spec_lim - process_mean, process_mean - lower_spec_lim) / (3 * std)
+        print('{0}       {1}   {2}'.format(group_sizes[i], group_d2s[i], cpk));
+    
+#  Revision 1 8:50pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+
+###########
+# Issue 8 #
+###########
+
+#  Revision 1 8:50pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+
+def isPrime(num):
+    divs = 0;
+    for i in range(1, num+1):
+        if(num % i == 0):
+            divs += 1;
+            if(divs > 2):
+                return False;
+    return True;
+
+def issue8():
+    primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]
+    for p in primes:
+        if(isPrime(p)):
+            print('{0} is prime'.format(p));
+        else:
+            print('{0} is NOT prime!'.format(p));
+
+#  Revision 1 8:55pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+###########
+# Issue 9 #
+###########
+
+#  Revision 1 8:55pm 10-26-22
+## Begin Ryan Alsobrooks here 10-26-22
+
+
+def issue9():
+    price = 20.0;
+    good, mediocre, bad = 0.2, 0.1, 0;
+    selected_percent = good;
+    tip = price * selected_percent;
+    print('{0}$ tipped at {1}% is {2}$ in tip'.format(price, selected_percent, tip));
+
+
+#  Revision 1 9:05pm 10-26-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
