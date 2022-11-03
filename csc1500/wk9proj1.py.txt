@@ -1,0 +1,149 @@
+############
+# Ticket 1 #
+############
+
+#  Revision 1 12:00pm 11-3-22
+## Begin Ryan Alsobrooks here 11-3-22
+
+#Imports
+import random;
+
+
+#Employee Database Dictionary
+employees = {};
+
+
+
+#Maximum size integer for uuid creation
+max_int = 2 ** 32;
+
+#Utility class for creating unique user ids randomly
+class UUID:
+    def __init__(self):
+        self.uid = random.randint(0, max_int);
+
+    def __str__(self):
+        return str(self.uid);
+
+
+
+#Class for storing all data about an employee
+class Employee:
+    field_types = [str, str, int, int, str, str, str]
+    field_names = ['name', 'address', 'phone', 'ssn', 'manager', 'title', 'skills'];
+    
+    def __init__(self, fields):
+        self.fields = fields;
+
+    #Returns true if the employee contains a specified value for a given field
+    def query(self, field_name, value):
+        #Get location of desired field, return False if it doesn't exist
+        fieldloc = Employee.field_names.index(field_name);
+        if(fieldloc == -1):
+            return False;
+        
+        #Return True if a string field contains value, otherwise return exact comparison
+        if(Employee.field_types[fieldloc] == str):
+            return value in self.fields[fieldloc];
+        else:
+            return value == self.fields[fieldloc];
+
+    def __str__(self):
+        out = '[';
+        
+        for i in range(len(Employee.field_types)):
+            out += '{0}: {1}, '.format(Employee.field_names[i], self.fields[i]);
+
+        out = out[0:len(out)-2] + ']';
+        return out;
+    
+
+
+#Prompts for an input of a particular type
+def prompt(question, inpt_type):
+    while True:
+        answer = input(question);
+
+        try:
+            if(inpt_type == bool):
+                return answer.lower() in 'trueyes';
+            else:
+                return inpt_type(answer);
+        except:
+            print('Invalid Input: {0}\nExpected Input: {1}'.format(answer, inpt_type));
+
+
+
+#Inputs a new employee to memory from the terminal
+def inputNewEmployee():
+    #Array for storing inputs
+    fields = [];
+    
+    #Input values
+    for i in range(len(Employee.field_types)):
+        fields.append(prompt('Enter {0}: '.format(Employee.field_names[i]), Employee.field_types[i]));
+        
+    #Make sure manager field is in Yes/No format
+    mgrloc = Employee.field_names.index('manager');
+    ismgr = fields[mgrloc].lower() in 'trueyes';
+    if(ismgr):
+        fields[mgrloc] = 'Yes'
+    else:
+        fields[mgrloc] = 'No'
+
+    #Ensure all fields that are going to be entered are the right data type
+    for i in range(len(fields)):
+        if(not isinstance(fields[i], Employee.field_types[i])):
+            print('ERROR::INVALID_ENTRY_TYPE Expected {0} Got {1}'.format(Employee.field_types[i], type(fields[i])));
+            return;
+
+    return Employee(fields);
+
+
+#Appends an employee to the dictionary
+def appendEmployee(employee):
+    employees.update({UUID() : employee});
+
+
+#Main terminal 
+def main():
+    while True:
+        command = input('Enter Command: ');
+        command = command.lower();
+
+        if(command == 'quit'):
+            break;
+        elif(command == 'help'):
+            print('quit\nhelp\nprintout\nquery <field> <value>\nnew');
+        elif(command == 'printout'):
+            for uuid in employees:
+                print('{0}: {1}\n'.format(uuid, employees[uuid]));
+        elif(command == 'query'):
+            #Get field to query
+            qfield = prompt('Enter Field to query: ', str);
+            while(not qfield in Employee.field_names):
+                print('Invalid Field: ' + qfield);
+                print(str(Employee.field_names));
+                qfield = prompt('Enter Field to query: ', str);
+
+            qfieldloc = Employee.field_names.index(qfield);
+
+            #Get value to query for
+            qvalue = prompt('Enter Query value: ', Employee.field_types[qfieldloc]); 
+
+            #Do the query
+            for uuid in employees:
+                if(employees[uuid].query(qfield, qvalue)):
+                    print('{0}: {1}\n'.format(uuid, employees[uuid]));
+                    
+        elif(command == 'new'):
+            appendEmployee(inputNewEmployee());
+        else:
+            print('Invalid Command: ' + command);
+        
+
+main();
+
+#  Revision 1 1:40pm 11-3-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
