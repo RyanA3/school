@@ -1,4 +1,5 @@
 import AbstractDatabase;
+import FileManager;
 
 ##################
 # ForestDatabase #
@@ -19,6 +20,15 @@ EMPLOYEE_TEMPLATE = AbstractDatabase.EntryTemplate(template_field_names, templat
 Employee = lambda fields: AbstractDatabase.Entry(EMPLOYEE_TEMPLATE, fields);
 
 
+anemployee = Employee(['Bozo', 'gaming', '119284', 'anemail', 5820394810, 19931, 'Skills']);
+
 
 #Define database and load into memory
-DATABASE = AbstractDatabase.Database(EMPLOYEE_TEMPLATE);
+#DATABASE = AbstractDatabase.Database(EMPLOYEE_TEMPLATE);
+
+
+#FileManager.genNewBackup(DATABASE);
+DATABASE = FileManager.loadDb(FileManager.FOREST_DB);
+print(DATABASE.entries);
+print(DATABASE.template);
+FileManager.saveDb(FileManager.FOREST_DB, DATABASE);

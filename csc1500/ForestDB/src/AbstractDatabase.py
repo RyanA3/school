@@ -9,6 +9,7 @@ import random;
 
 
 #Utility class for generating random unique ids
+max_int = 2 ** 32;
 class UUID:
     def __init__(self):
         self.uid = random.randint(0, max_int);
@@ -31,6 +32,20 @@ class EntryTemplate:
         for i in range(len(self.field_names)):
             out += '{0}:{1},'.format(self.field_names[i], self.field_types[i]);
         return out[0:len(out)-1];
+
+    def __eq__(self, other):
+        if(len(self.field_types) != len(other.field_types)):
+            return False;
+        
+        for i in range(len(self.field_types)):
+            if(self.field_types[i] != other.field_types[i]):
+                return False;
+            if(not self.field_names[i] in other.field_names[i]):
+                return False;
+        return True;
+    
+    def __neq__(self, other):
+        return not self == other;
 
 
             
@@ -77,7 +92,7 @@ class Database:
         if(entry.template != self.template):
             raise Exception('ERROR::FORESTDB::ABSTRACTDB::DATABASE::APPEND Template Mismatch');
             return;
-        self.entries.update({UUID(), entry});
+        self.entries.update({UUID() : entry});
 
     def remove(self, uuid):
         del self.entries[uuid];
