@@ -13,14 +13,13 @@ def mkdir(path):
             raise;
 
 
-
 #Get current location & location for saving files
 CURRENT_FOLDER = os.getcwd();
 CURRENT_FOLDER = CURRENT_FOLDER[0:len(CURRENT_FOLDER)-4];
 DATA_FOLDER = '{0}/data'.format(CURRENT_FOLDER);
 BACKUP_FOLDER = '{0}/backups'.format(DATA_FOLDER);
 DATABASE_FOLDER = '{0}/databases'.format(DATA_FOLDER);
-FOREST_DB = 'forestdb';
+
 
 #Ensure directories exist
 mkdir(DATA_FOLDER);
@@ -57,6 +56,10 @@ def genNewBackup(database):
     newbackup.write(data);
     newbackup.close();
 
+#Checks if a backup exists
+def backupExists(num):
+    return os.path.exists(backup_file(num));
+
 #Loads a backup
 def loadBackup(num):
     latest = getCurrentBackup();
@@ -65,6 +68,10 @@ def loadBackup(num):
         return;
     db = pickle.load(open(backup_file(num), 'rb'));
     return db;
+
+#Checks if a db exists
+def dbExists(name):
+    return os.path.exists(db_file(name));
 
 #Loads a database
 def loadDb(name):
