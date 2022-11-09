@@ -33,6 +33,8 @@ manage_sav_frame.grid(columns=3, rows=2);
 
 manage_viewdb_frame = ttk.Frame(manage_frame, padding=10);
 
+info_frame = ttk.Frame(window, padding=10);
+
 
 ###################
 # AGREEMENT FRAME #
@@ -42,7 +44,11 @@ agreement = '';
 agreement += 'By using this software you agree not to sell or distribute\n'
 agreement += 'data without the express consent of Forestview\n\n'
 agreement += 'You hereby indemnify Forestview from all legal ramnifications\n'
-agreement += 'regarding data breaches, zero-day attacks, and database worms.'
+agreement += 'regarding data breaches, zero-day attacks, and database worms.\n\n'
+agreement += 'Vendors are required to make periodic vulnerability\n'
+agreement += 'assessments of this system. This agreement is subject\n'
+agreement += 'to change, and will change to stay accurate with the\n'
+agreement += 'current security and technology climate.'
 
 ttk.Label(master=agreement_frame, text='Agreement').pack();
 ttk.Label(master=agreement_frame, text=agreement).pack();
@@ -50,7 +56,7 @@ ttk.Label(master=agreement_frame, text=agreement).pack();
 #Runs when accepting user agreement
 def agreementButton():
     main_frame.pack();
-    query_frame.pack();
+    info_frame.pack();
     agreement_frame.pack_forget();
 
 ttk.Button(master=agreement_frame, text='I Agree', command=agreementButton).pack()
@@ -68,13 +74,62 @@ ttk.Button(master=agreement_frame, text='I Agree', command=agreementButton).pack
 def selectQueryMenu():
     query_frame.pack();
     manage_frame.pack_forget();
+    info_frame.pack_forget();
 
 def selectManageMenu():
     manage_frame.pack();
     query_frame.pack_forget();
+    info_frame.pack_forget();
+
+def selectIfoMenu():
+    info_frame.pack();
+    manage_frame.pack_forget();
+    query_frame.pack_forget();
 
 Button(main_frame, text='Query Menu', command=selectQueryMenu).pack(side=LEFT);
 Button(main_frame, text='Manage Menu', command=selectManageMenu).pack(side=LEFT);
+Button(main_frame, text='Info', command=selectIfoMenu).pack(side=LEFT);
+
+
+
+
+
+##############
+# INFO FRAME #
+##############
+info = '';
+info += "	The ForestDB application currently has two main menus for\n"
+info += "querying and managing the database. These menus are called the query\n"
+info += "and manage menu respectively. Each employee has fields which store their\n"
+info += "data. For example, one employee field is their name, which stores that one\n"
+info += "particular employee’s name. If you want to query employees by name, you\n"
+info += "should first select the name option from the drop down menu, and then enter\n"
+info += "the name you wish to query for. Pressing the query button will execute the\n"
+info += "query based on the currently selected field and the value to query by.\n"
+info += "You can query employees by any field that they contain, such as ssn, email,\n"
+info += "phone, skills etc. The manage menu provides multiple database tools which\n"
+info += "manage the database. First off there is a save and backup button. The save\n"
+info += "button will save any added employees to the database. When entering data\n"
+info += "into the database, it is important to save the database before closing the\n"
+info += "program, otherwise that data will be lost. The backup button automatically\n"
+info += "generates a new backup of the database at the point in time in which the\n"
+info += "button was pressed. Backups are unlimited, and the next backup will be\n"
+info += "place in the data/backups folder with a name and a number, the higher the\n"
+info += "number, the later in time the backup. The main database file is saved into\n"
+info += "data/databases/forestdb, it is important to restrict privilege to this file,\n"
+info += "as it contains all the employee data of the database. The add button will add\n"
+info += "an employee to the database, assuming all of the fields of the employee are\n"
+info += "filled out correctly below the add button. If the fields are not filled out\n"
+info += "correctly, the label next to the add button will be updated with an error.\n"
+info += "In order to remove an employee from the database, simply type their unique id\n"
+info += "(found leftmost of the employee’s data in the database view box) and then press\n"
+info += "the ‘Remove Employee’ button. They will be deleted from the database. At this\n"
+info += "point in time, there is no way to edit an employee currently in the database.\n"
+info += "If you wish to edit an employee’s fields that is currently in the database,\n"
+info += "you should delete the employee and re-enter their data."
+
+info_lbl = Label(info_frame, text=info);
+info_lbl.pack(side=LEFT);
 
 
 
