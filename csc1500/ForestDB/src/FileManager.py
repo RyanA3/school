@@ -1,9 +1,6 @@
 import os;
 import pickle;
 
-
-
-
 #Utility function for mkdir since python's implementation is awful
 def mkdir(path):
     if not os.path.exists(path):

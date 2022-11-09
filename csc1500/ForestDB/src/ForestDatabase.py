@@ -28,7 +28,7 @@ DATABASE = AbstractDatabase.Database(EMPLOYEE_TEMPLATE);
 #Loads database into memeory from primary save file
 def load():
     if(FileManager.dbExists(FNAME)):
-        DATABASE = FileManager.loadDb(FNAME);
+        DATABASE.merge(FileManager.loadDb(FNAME));
         print('Loaded database from {0}'.format(FNAME));
     else:
         print('{0} not found'.format(FNAME));
@@ -58,6 +58,8 @@ def loadAndMerge(name):
         loaded = FileManager.loadDb(name);
         DATABASE.merge(loaded);
         print('Merged {0} with {1}'.format(name, FNAME));
+
+
     
     
     
