@@ -1,0 +1,153 @@
+############
+# Ticket 1 #
+############
+
+import os;
+
+#  Revision 1 12:20pm 11-9-22
+## Begin Ryan Alsobrooks here 11-9-22
+
+
+def sphere_volume(r):
+    return (4.0 / 3.0) * 3.1415 * (r ** 3);
+
+def q1():
+    print(sphere_volume(5));
+
+
+#  Revision 1 12:25pm 11-9-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+############
+# Ticket 2 #
+############
+
+#  Revision 1 12:25pm 11-9-22
+## Begin Ryan Alsobrooks here 11-9-22
+
+
+def print_range(start, end):
+    if(start < end):
+        temp = end;
+        end = start;
+        start = temp;
+
+    print(start);
+    
+    if(start != end):
+        print_range(start-1, end);
+
+
+def q2():
+    print_range(3, 1);
+    print_range(1, 3);
+
+
+#  Revision 1 12:30pm 11-9-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+
+############
+# Ticket 3 #
+############
+
+#  Revision 1 12:30pm 11-9-22
+## Begin Ryan Alsobrooks here 11-9-22
+
+
+def gcd(a, b):
+    if(b == 0):
+        return a;
+    else:
+        temp = b;
+        b = a % b;
+        a = temp;
+        return gcd(a, b);
+
+def q3():
+    print(gcd(12, 8));
+    print(gcd(8, 12));
+    print(gcd(20, 24));
+    print(gcd(24, 20));
+
+
+#  Revision 1 12:40pm 11-9-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+
+############
+# Ticket 4 #
+############
+
+#  Revision 1 12:50pm 11-9-22
+## Begin Ryan Alsobrooks here 11-9-22
+
+def loadcsv():
+    columns = ['time', 'product', 'price', 'card', 'name', 'state', 'country']
+    sales_data = [];
+
+    fpath = 'C:/Users/Ryan/Desktop/Assignments/CSC1500/Week10/SalesJan2009.csv';
+    sfile = open(fpath, 'r');
+
+    for line in sfile:
+        values = line.replace("\"", "").split(",");
+        kvpairs = {};
+        for i in range(len(values)-1):
+            kvpairs.update({columns[i] : values[i]});
+
+        sales_data.append(kvpairs);
+        
+    sfile.close();
+    return sales_data;
+
+
+def q4():
+    sfpath= 'C:/Users/Ryan/Desktop/Assignments/CSC1500/Week10/transaction_data.json';
+    jsonval = str(loadcsv());
+    jsonval = jsonval.replace("'", '"');
+    jsonval = jsonval.replace(',',',\n');
+    ssfile = open(sfpath, 'w');
+    ssfile.write(jsonval);
+    ssfile.close();
+
+
+#  Revision 1 1:10pm 11-9-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+
+############
+# Ticket 5 #
+############
+
+#  Revision 1 2:40pm 11-9-22
+## Begin Ryan Alsobrooks here 11-9-22
+
+def q5():
+    sales_data = loadcsv();
+    for i in range(len(sales_data)):
+        sales_data[i] = [sales_data[i][val] for val in sales_data[i] if val == 'price']
+    print(sales_data);
+
+#  Revision 1 3:00pm 11-9-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
