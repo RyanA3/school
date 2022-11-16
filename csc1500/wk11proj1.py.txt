@@ -1,0 +1,125 @@
+############
+# Ticket 1 #
+############
+
+#  Revision 1 11:30pm 11-16-22
+## Begin Ryan Alsobrooks here 11-16-22
+
+#Evaluates area of general shapes depending on the names of
+#arguments given, defaults to cube/square/hypercube/etc
+def area(**args):
+    #Area of circle
+    if('r' in args):
+        return args['r'] ** 2 * 3.1415;
+    
+    #Area of triangle
+    if('b' in args and 'h' in args):
+        return args['b'] * args['h'] / 2;
+    
+    #Area of general square/cube/hypercube/etc
+    v = 1;
+    for key, side in args:
+        v *= side;
+    return v;
+
+def t1():
+    print(area(r=5));
+
+#  Revision 1 11:50pm 11-16-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+############
+# Ticket 2 #
+############
+
+#  Revision 1 11:50pm 11-16-22
+## Begin Ryan Alsobrooks here 11-16-22
+
+#Computes the side length of a cube/square/hypercube/etc
+def computeCubicLength(**args):
+    return args['v'] ** (1.0 / args['sides']);
+
+def t2():
+    print(computeCubicLength(v=729,sides=3));
+
+#  Revision 1 11:55pm 11-16-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+############
+# Ticket 3 #
+############
+
+#  Revision 1 11:55pm 11-16-22
+## Begin Ryan Alsobrooks here 11-16-22
+
+
+#Calculated hypotenuse length of a 2d right triangle given a and b
+def computeHypotenuse(**args):
+    return ((args['a'] ** 2) + (args['b'] ** 2)) ** (1.0 / 2.0);
+
+
+def t3():
+    print(computeHypotenuse(a=10,b=18));
+
+#  Revision 1 12:00pm 11-16-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+
+############
+# Ticket 4 #
+############
+
+#  Revision 1 12:00pm 11-16-22
+## Begin Ryan Alsobrooks here 11-16-22
+
+
+#Dunno
+def computeSomething(**args):
+    return ( (((args['a'] + args['b']) ** 3) - 18) / ( args['c'] + (args['d'] - args['e']) * ( (7-2.91683) ** -0.4))) ** (1.0 / 2)
+
+def t4():
+    print(computeSomething(a=4.172,b=9.131844,c=-3.5,d=11.2,e=4.6));
+
+#  Revision 1 12:05pm 11-16-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
+
+
+
+############
+# Ticket 5 #
+############
+
+#  Revision 1 12:05pm 11-16-22
+## Begin Ryan Alsobrooks here 11-16-22
+
+
+def f(a, b=4, c=5):
+    print(a,b,c);
+
+f(1,2);
+f(1, c=3, b=2);
+
+
+#  Revision 1 12:06pm 11-16-22
+## End Ryan Alsobrooks here
+#  Ryan Alsobrooks
+
+
