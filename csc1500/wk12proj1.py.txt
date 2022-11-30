@@ -1,0 +1,141 @@
+# Week 12 Assignment
+
+
+
+#  Ryan Alsobrooks 11:20am 11-30-22
+## Begin Ryan Alsobrooks here
+
+
+#List of unorganized employee data
+data_list = [1121, "Jackie Grainger", 22.22,
+             1122, "Jignesh Thrakkar", 25.25,
+             1127, "Dion Green", 28.75, False,
+             24.32, 1132, "Jacob Gerber",
+             "Sarah Sanderson", 23.45, 1137, True,
+             "Brandon Heck", 1138, 25.84, True,
+             1152, "David Toma", 22.65,
+             23.75, 1157, "Charles King", False,
+             "Jackie Grainger", 1121, 22.22, False,
+             22.65, 1152, "David Toma"]
+
+
+#list for storing properly formatted employee data
+employee_db = [];
+
+
+
+#Organize employee data into database
+def formatData(some_data):
+    #Formatted data to return
+    out_data = [];
+
+    #Stores employee data to build on
+    employee_properties = {};
+
+    #Map of data types to properties
+    type_map = {int : 'id', str : 'name', float : 'wage', bool : 'ukn_bool'};
+
+    #Loops all data elements in the data list
+    for element in data_list:
+            
+        #Make sure the type of data is in the type map
+        if(type(element) in type_map):
+            property_name = type_map[type(element)];
+            
+            #If the property is already added, it must belong to the next employee
+            #Then add current employee data to db and generate new employee
+            if(property_name in employee_properties):
+                out_data.append(employee_properties);
+                employee_properties = {};
+
+            #Add property to the employee's data
+            employee_properties.update({property_name : element});
+
+    #Add last employee to db
+    employee_db.append(employee_properties);
+
+    #Return formatted db
+    return out_data;
+
+
+
+#Remove duplicate employees from the database
+def deduplicateByName(some_data):
+
+    for employee in some_data:
+        for check in some_data:
+            if(check == employee):
+                continue;
+            if(check['name'] == employee['name']):
+                some_data.remove(check);
+
+    return some_data;
+
+    
+
+#Format the data into employee_db
+employee_db = formatData(data_list);
+
+#Remove entries with duplicate employee names
+employee_db = deduplicateByName(employee_db);
+
+
+
+#Calculate all employee's total hourly rate by multiplying wage by 1.3 (30% inc)
+for employee in employee_db:
+    employee.update({'total_hourly_rate' : employee['wage'] * 1.3});
+
+
+
+#Create a list to store employees who are underpaid
+underpaid_salaries = [];
+
+#Add employees with a total hourly rate between 28.15 and 30.65 to the
+#Underpaid salaries list
+for employee in employee_db:
+    rate = employee['total_hourly_rate'];
+    if(rate > 28.15 and rate < 30.65):
+        underpaid_salaries.append(employee);
+
+
+
+#Create a list to store calculated raises for each employee
+company_raises = [];
+
+#Calculate raises for each employee and add them to the raises table
+#Depending on the following criteria:
+# total hourly rate is between:
+#  22 and 24: raise 5%
+#  24 and 26: raise 4%
+#  26 and 28: raise 3%
+#  otherwise: raise 2%
+def raiseEmployees(some_employees):
+    for employee in some_employees:
+        rate = employee['wage'];
+        raise_fac = 0.02;
+    
+        if(rate >= 22 and rate < 24):
+            raise_fac = 0.05;
+        elif(rate >= 24 and rate < 26):
+            raise_fac = 0.04;
+        elif(rate >= 26 and rate < 28):
+            raise_fac = 0.03;
+
+        yield {'name' : employee['name'], 'raise_factor' : raise_fac};
+
+print('[FORMATTED DATABASE]');
+print(employee_db);
+print('\n[UNDERPAID_EMPLOYEES]');
+print(underpaid_salaries);
+print('\n[RAISES]');
+
+#Generate employee raises
+raise_generator = raiseEmployees(employee_db);
+for employee_raise in raise_generator:
+    company_raises.append(employee_raise);
+    
+print(company_raises);
+
+
+#  End Ryan Alsobrooks here
+## Ryan Alsobrooks 12:20pm 11-30-22
